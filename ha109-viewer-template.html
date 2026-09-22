@@ -1,0 +1,346 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>M3 MINI GO · Kích thước & Mô hình 3D</title><style>
+*{box-sizing:border-box}
+body{margin:0;padding:0;background:#ffffff;color:#0f172a;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+
+/* Header Section */
+header{max-width:1400px;margin:0 auto;padding:26px 36px 20px}
+h1{font-size:24px;font-weight:800;margin:0;letter-spacing:-.6px;color:#0f172a}
+header p{color:#64748b;margin:4px 0 0;font-size:13px}
+
+/* Full-width 3D Viewer Band (Tone xám nhạt êm dịu, thanh lịch) */
+.viewer-wrapper{position:relative;width:100%;height:68vh;min-height:500px;max-height:760px;background:#e2e8f0;overflow:hidden}
+model-viewer{display:block;width:100%;height:100%;--poster-color:transparent;background:radial-gradient(circle at 50% 50%,#f1f5f9 0%,#e5ebf2 60%,#d8e1ea 100%)}
+
+/* Left Specification Card */
+.dim-card{position:absolute;top:20px;left:24px;background:#ffffff;border:1px solid rgba(203,213,225,0.8);border-radius:14px;padding:16px 20px;box-shadow:0 8px 24px rgba(15,23,42,0.06);color:#0f172a;width:290px;max-width:calc(100vw - 48px);opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .25s ease;pointer-events:none;z-index:20}
+.show-dimensions .dim-card{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.dim-card-title{font-weight:800;font-size:14px;margin-bottom:12px;color:#0f172a}
+.dim-grid{display:grid;gap:8px}
+.dim-item{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.dim-label{color:#475569;font-size:12.5px;font-weight:500}
+.dim-val{font-weight:800;color:#0f172a;font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-size:13px;text-align:right}
+
+/* CAD Hotspot Anchors */
+.cad-anchor{opacity:0;pointer-events:none;position:absolute;width:1px;height:1px;border:none;background:transparent;padding:0;margin:0}
+
+/* CAD Dimension Lines Overlay */
+.cad-dim-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;overflow:visible}
+.show-dimensions .cad-dim-svg{opacity:1;visibility:visible}
+
+.cad-group{transition:opacity .15s ease}
+.cad-ext-line{stroke:#475569;stroke-width:1.3;stroke-dasharray:4,3;opacity:0.85}
+.cad-dim-line{stroke:#0f172a;stroke-width:1.6;opacity:1}
+
+/* CAD Dimension Badges */
+.cad-badges-layer{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:15;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
+.show-dimensions .cad-badges-layer{opacity:1;visibility:visible}
+
+.cad-badge{position:absolute;transform:translate(-50%,-50%);background:#ffffff;border:1.6px solid #0f172a;border-radius:8px;padding:3px 10px;font-size:12.5px;font-weight:700;font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;color:#0f172a;box-shadow:0 4px 12px rgba(15,23,42,0.1);white-space:nowrap;pointer-events:none;user-select:none;transition:opacity .15s ease,transform .08s ease}
+
+/* Controls & Bottom Section */
+.controls-container{max-width:1400px;margin:0 auto;padding:16px 24px 32px}
+#status{font-size:12px;color:#64748b;text-align:center;margin:0 0 16px}
+nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+button{color:#1e293b;background:#ffffff;border:1px solid #cbd5e1;padding:10px 18px;border-radius:12px;font:inherit;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;transition:all .15s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+button:hover{background:#f8fafc;border-color:#94a3b8}
+button.active{background:#111827;color:#ffffff;border-color:#111827;box-shadow:0 3px 8px rgba(17,24,39,0.25)}
+
+footer{max-width:720px;margin:0 auto;text-align:center;color:#94a3b8;font-size:11.5px;line-height:1.6}
+
+@media(max-width:640px){
+  header{padding:18px 20px 14px}
+  .viewer-wrapper{height:60vh;min-height:420px}
+  .dim-card{top:12px;left:12px;padding:12px 14px;width:calc(100vw - 24px)}
+  nav{gap:6px}
+  button{padding:8px 12px;font-size:12px}
+}
+</style><script type="module">MODEL_VIEWER_JS</script></head><body>
+
+<header>
+  <h1>M3 MINI GO</h1>
+  <p>Vật liệu PBR chân thực · Kéo xoay 360° · Cuộn chuột để phóng to / thu nhỏ thoải mái</p>
+</header>
+
+<div class="viewer-wrapper">
+  <!-- Left Specification Card -->
+  <div id="dim-card" class="dim-card">
+    <div class="dim-card-title">Kích thước kỹ thuật (cm)</div>
+    <div class="dim-grid">
+      <div class="dim-item"><span class="dim-label">Rộng tổng thể (ngang):</span><span class="dim-val">32.0 cm</span></div>
+      <div class="dim-item"><span class="dim-label">Cao tổng thể (đứng):</span><span class="dim-val">33.1 cm</span></div>
+      <div class="dim-item"><span class="dim-label">Sâu tổng thể (nghiêng):</span><span class="dim-val">26.6 cm</span></div>
+      <div class="dim-item"><span class="dim-label">Thân máy chính:</span><span class="dim-val">30.2 × 24.9 × 10.4 cm</span></div>
+    </div>
+  </div>
+
+  <model-viewer id="model" src="data:model/gltf-binary;base64,MODEL_DATA" auto-rotate-delay="0" rotation-per-second="25deg" camera-controls shadow-intensity="1.25" shadow-softness="0.95" exposure="0.92" tone-mapping="commerce" environment-image="neutral" camera-orbit="0deg 90deg 0.82m" camera-target="0m 0.115m 0m" min-camera-orbit="auto 5deg 0.20m" max-camera-orbit="auto 175deg 5.5m" field-of-view="32deg" alt="Mô hình máy chiếu M3 MINI GO với bản vẽ kích thước CAD">
+    <div slot="progress-bar"></div>
+
+    <!-- 1. Anchors for Width (32.0 cm) -->
+    <button class="cad-anchor" slot="hotspot-w-left" data-position="-0.157m 0.000m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-w-right" data-position="0.157m 0.000m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-w-ext-l" data-position="-0.157m -0.055m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-w-ext-r" data-position="0.157m -0.055m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-w-dim-l" data-position="-0.157m -0.046m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-w-dim-r" data-position="0.157m -0.046m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-w-mid" data-position="0m -0.046m 0.148m"></button>
+
+    <!-- 2. Anchors for Height (33.1 cm) -->
+    <button class="cad-anchor" slot="hotspot-h-top" data-position="0.157m 0.228m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-h-bot" data-position="0.157m 0.000m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-h-ext-t" data-position="0.228m 0.228m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-h-ext-b" data-position="0.228m 0.000m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-h-dim-t" data-position="0.216m 0.228m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-h-dim-b" data-position="0.216m 0.000m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-h-mid" data-position="0.216m 0.114m 0.148m"></button>
+
+    <!-- 3. Anchors for Depth (26.6 cm) -->
+    <button class="cad-anchor" slot="hotspot-d-front" data-position="0.157m 0.012m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-d-back" data-position="0.157m 0.012m -0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-d-ext-f" data-position="0.228m 0.012m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-d-ext-bk" data-position="0.228m 0.012m -0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-d-dim-f" data-position="0.216m 0.012m 0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-d-dim-bk" data-position="0.216m 0.012m -0.148m"></button>
+    <button class="cad-anchor" slot="hotspot-d-mid" data-position="0.216m 0.012m 0.0m"></button>
+
+  </model-viewer>
+
+  <!-- CAD SVG Drawing Layer -->
+  <svg id="cad-svg" class="cad-dim-svg">
+    <defs>
+      <!-- Sharp Black/Navy CAD Arrows -->
+      <marker id="arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 9 1.5 L 1 5 L 9 8.5 z" fill="#0f172a" />
+      </marker>
+      <marker id="arrow-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#0f172a" />
+      </marker>
+    </defs>
+
+    <!-- 1. Width (32.0 cm) Group -->
+    <g id="group-w" class="cad-group">
+      <line id="ext-w-l" class="cad-ext-line" />
+      <line id="ext-w-r" class="cad-ext-line" />
+      <line id="dim-w-line" class="cad-dim-line" marker-start="url(#arrow-start)" marker-end="url(#arrow-end)" />
+    </g>
+
+    <!-- 2. Height Overall (33.1 cm) Group -->
+    <g id="group-h" class="cad-group">
+      <line id="ext-h-t" class="cad-ext-line" />
+      <line id="ext-h-b" class="cad-ext-line" />
+      <line id="dim-h-line" class="cad-dim-line" marker-start="url(#arrow-start)" marker-end="url(#arrow-end)" />
+    </g>
+
+    <!-- 3. Depth (26.6 cm) Group -->
+    <g id="group-d" class="cad-group">
+      <line id="ext-d-f" class="cad-ext-line" />
+      <line id="ext-d-bk" class="cad-ext-line" />
+      <line id="dim-d-line" class="cad-dim-line" marker-start="url(#arrow-start)" marker-end="url(#arrow-end)" />
+    </g>
+  </svg>
+
+  <!-- CAD Badges Layer -->
+  <div class="cad-badges-layer">
+    <div id="badge-w" class="cad-badge">32.0 cm</div>
+    <div id="badge-h" class="cad-badge">33.1 cm</div>
+    <div id="badge-d" class="cad-badge">26.6 cm</div>
+  </div>
+</div>
+
+<div class="controls-container">
+  <p id="status" role="status">Đang tải mô hình…</p>
+  <nav>
+    <button data-orbit="0deg 90deg 0.82m" class="active">Mặt trước</button>
+    <button data-orbit="28deg 82deg 0.82m">Góc ¾</button>
+    <button data-orbit="90deg 90deg 0.82m">Mặt bên</button>
+    <button data-orbit="180deg 82deg 0.82m">Mặt sau</button>
+    <button id="spin">Tự xoay</button>
+    <button id="dim-toggle">Kích thước (cm)</button>
+  </nav>
+
+  <footer>Tái dựng ngoại hình theo ảnh tham chiếu. Chiều cao quy ước 330 mm, chưa phải kích thước thực. Các chi tiết bên trong được giản lược; không phải bản CAD sản xuất.</footer>
+</div>
+
+<script>
+const model=document.getElementById('model'),
+      status=document.getElementById('status'),
+      spinBtn=document.getElementById('spin'),
+      dimBtn=document.getElementById('dim-toggle'),
+      groupW=document.getElementById('group-w'),
+      groupH=document.getElementById('group-h'),
+      groupD=document.getElementById('group-d'),
+      badgeW=document.getElementById('badge-w'),
+      badgeH=document.getElementById('badge-h'),
+      badgeD=document.getElementById('badge-d');
+
+let showDim=false, rafId=null;
+model.autoRotateDelay=0;
+model.rotationPerSecond='25deg';
+
+function setLine(line, p1, p2){
+  if(!line) return;
+  if(p1 && p2 && Number.isFinite(p1.x) && Number.isFinite(p1.y) && Number.isFinite(p2.x) && Number.isFinite(p2.y)){
+    line.setAttribute('x1', p1.x);
+    line.setAttribute('y1', p1.y);
+    line.setAttribute('x2', p2.x);
+    line.setAttribute('y2', p2.y);
+    line.style.display = '';
+  } else {
+    line.style.display = 'none';
+  }
+}
+
+function setBadge(badge, pMid){
+  if(!badge) return;
+  if(pMid && Number.isFinite(pMid.x) && Number.isFinite(pMid.y)){
+    badge.style.left = `${pMid.x}px`;
+    badge.style.top = `${pMid.y}px`;
+    badge.style.display = '';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function getPos(name){
+  try{
+    const h = model.queryHotspot(name);
+    return h ? h.canvasPosition : null;
+  }catch(e){
+    return null;
+  }
+}
+
+function updateCadDimensions(){
+  if(!showDim) return;
+
+  // Calculate 3D Camera Angles to Occlude Dimensions when behind the model
+  let orbit = null;
+  try {
+    orbit = model.getCameraOrbit();
+  } catch(e) {}
+
+  let theta = 0, phi = 90 * Math.PI / 180;
+  if (orbit) {
+    theta = orbit.theta;
+    phi = orbit.phi;
+  }
+
+  // Camera direction vectors in 3D
+  const sinPhi = Math.sin(phi);
+  const cosPhi = Math.cos(phi);
+  const cx = Math.sin(theta) * sinPhi;
+  const cz = Math.cos(theta) * sinPhi;
+  const isTopView = cosPhi > 0.7;
+
+  // 1. Width Dimension (on Front Plane, normal = +Z)
+  let opW = isTopView ? 1.0 : Math.max(0, Math.min(1, (cz + 0.1) * 3));
+  groupW.style.opacity = opW;
+  badgeW.style.opacity = opW;
+  const showW = opW > 0.02;
+  groupW.style.display = showW ? '' : 'none';
+  badgeW.style.display = showW ? '' : 'none';
+
+  if (showW) {
+    const wl = getPos('hotspot-w-left'), wr = getPos('hotspot-w-right');
+    const wel = getPos('hotspot-w-ext-l'), wer = getPos('hotspot-w-ext-r');
+    const wdl = getPos('hotspot-w-dim-l'), wdr = getPos('hotspot-w-dim-r');
+    const wm = getPos('hotspot-w-mid');
+    setLine(document.getElementById('ext-w-l'), wl, wel);
+    setLine(document.getElementById('ext-w-r'), wr, wer);
+    setLine(document.getElementById('dim-w-line'), wdl, wdr);
+    setBadge(badgeW, wm);
+  }
+
+  // 2. Height Dimension (on Front-Right corner, normal = +X, +Z)
+  const dotH = 0.6 * cx + 0.8 * cz;
+  let opH = isTopView ? 0 : Math.max(0, Math.min(1, (dotH + 0.15) * 3));
+  groupH.style.opacity = opH;
+  badgeH.style.opacity = opH;
+  const showH = opH > 0.02;
+  groupH.style.display = showH ? '' : 'none';
+  badgeH.style.display = showH ? '' : 'none';
+
+  if (showH) {
+    const ht = getPos('hotspot-h-top'), hb = getPos('hotspot-h-bot');
+    const het = getPos('hotspot-h-ext-t'), heb = getPos('hotspot-h-ext-b');
+    const hdt = getPos('hotspot-h-dim-t'), hdb = getPos('hotspot-h-dim-b');
+    const hm = getPos('hotspot-h-mid');
+    setLine(document.getElementById('ext-h-t'), ht, het);
+    setLine(document.getElementById('ext-h-b'), hb, heb);
+    setLine(document.getElementById('dim-h-line'), hdt, hdb);
+    setBadge(badgeH, hm);
+  }
+
+  // 3. Depth Dimension (on Right Plane, normal = +X)
+  let opD = isTopView ? 1.0 : Math.max(0, Math.min(1, (cx + 0.1) * 3));
+  groupD.style.opacity = opD;
+  badgeD.style.opacity = opD;
+  const showD = opD > 0.02;
+  groupD.style.display = showD ? '' : 'none';
+  badgeD.style.display = showD ? '' : 'none';
+
+  if (showD) {
+    const df = getPos('hotspot-d-front'), dbk = getPos('hotspot-d-back');
+    const def = getPos('hotspot-d-ext-f'), debk = getPos('hotspot-d-ext-bk');
+    const ddf = getPos('hotspot-d-dim-f'), ddbk = getPos('hotspot-d-dim-bk');
+    const dm = getPos('hotspot-d-mid');
+    setLine(document.getElementById('ext-d-f'), df, def);
+    setLine(document.getElementById('ext-d-bk'), dbk, debk);
+    setLine(document.getElementById('dim-d-line'), ddf, ddbk);
+    setBadge(badgeD, dm);
+  }
+}
+
+function cadLoop(){
+  if(showDim){
+    updateCadDimensions();
+    rafId = requestAnimationFrame(cadLoop);
+  }
+}
+
+model.addEventListener('load',()=>{
+  status.textContent='Mô hình máy chiếu M3 MINI GO đã sẵn sàng · có thể xoay 360°';
+});
+
+model.addEventListener('error',()=>{
+  status.textContent='Trình duyệt không mở được WebGL. Hãy mở GLB trong Blender hoặc trình xem 3D.';
+});
+
+model.addEventListener('camera-change', ()=>{
+  if(showDim) updateCadDimensions();
+});
+
+window.addEventListener('resize', ()=>{
+  if(showDim) updateCadDimensions();
+});
+
+document.querySelectorAll('[data-orbit]').forEach(b=>b.onclick=()=>{
+  model.cameraOrbit=b.dataset.orbit;
+  model.autoRotate=false;
+  spinBtn.textContent='Tự xoay';
+  spinBtn.classList.remove('active');
+  document.querySelectorAll('[data-orbit]').forEach(x=>x.classList.toggle('active',x===b));
+  if(showDim) updateCadDimensions();
+});
+
+spinBtn.onclick=()=>{
+  model.autoRotate=!model.autoRotate;
+  spinBtn.textContent=model.autoRotate?'Dừng xoay':'Tự xoay';
+  spinBtn.classList.toggle('active',model.autoRotate);
+  if(model.autoRotate){
+    document.querySelectorAll('[data-orbit]').forEach(x=>x.classList.remove('active'));
+  }
+};
+
+dimBtn.onclick=()=>{
+  showDim=!showDim;
+  document.body.classList.toggle('show-dimensions',showDim);
+  dimBtn.classList.toggle('active',showDim);
+  if(showDim){
+    updateCadDimensions();
+    cadLoop();
+  } else if(rafId){
+    cancelAnimationFrame(rafId);
+  }
+};
+</script></body></html>
