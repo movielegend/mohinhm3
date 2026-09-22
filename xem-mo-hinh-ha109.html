@@ -7,12 +7,12 @@ header{max-width:1400px;margin:0 auto;padding:26px 36px 20px}
 h1{font-size:24px;font-weight:800;margin:0;letter-spacing:-.6px;color:#0f172a}
 header p{color:#64748b;margin:4px 0 0;font-size:13px}
 
-/* Full-width 3D Viewer Band */
-.viewer-wrapper{position:relative;width:100%;height:68vh;min-height:500px;max-height:760px;background:#b6c2cf;overflow:hidden}
-model-viewer{display:block;width:100%;height:100%;--poster-color:transparent;background:radial-gradient(circle at 50% 50%,#c2cdd9 0%,#afbccb 65%,#a1afbf 100%)}
+/* Full-width 3D Viewer Band (Tone xám nhạt êm dịu, thanh lịch) */
+.viewer-wrapper{position:relative;width:100%;height:68vh;min-height:500px;max-height:760px;background:#e2e8f0;overflow:hidden}
+model-viewer{display:block;width:100%;height:100%;--poster-color:transparent;background:radial-gradient(circle at 50% 50%,#f1f5f9 0%,#e5ebf2 60%,#d8e1ea 100%)}
 
 /* Left Specification Card */
-.dim-card{position:absolute;top:20px;left:24px;background:#ffffff;border:1px solid rgba(203,213,225,0.8);border-radius:14px;padding:16px 20px;box-shadow:0 8px 24px rgba(15,23,42,0.08);color:#0f172a;width:290px;max-width:calc(100vw - 48px);opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .25s ease;pointer-events:none;z-index:20}
+.dim-card{position:absolute;top:20px;left:24px;background:#ffffff;border:1px solid rgba(203,213,225,0.8);border-radius:14px;padding:16px 20px;box-shadow:0 8px 24px rgba(15,23,42,0.06);color:#0f172a;width:290px;max-width:calc(100vw - 48px);opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .25s ease;pointer-events:none;z-index:20}
 .show-dimensions .dim-card{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
 .dim-card-title{font-weight:800;font-size:14px;margin-bottom:12px;color:#0f172a}
 .dim-grid{display:grid;gap:8px}
@@ -28,14 +28,14 @@ model-viewer{display:block;width:100%;height:100%;--poster-color:transparent;bac
 .show-dimensions .cad-dim-svg{opacity:1;visibility:visible}
 
 .cad-group{transition:opacity .15s ease}
-.cad-ext-line{stroke:#334155;stroke-width:1.3;stroke-dasharray:4,3;opacity:0.85}
+.cad-ext-line{stroke:#475569;stroke-width:1.3;stroke-dasharray:4,3;opacity:0.85}
 .cad-dim-line{stroke:#0f172a;stroke-width:1.6;opacity:1}
 
 /* CAD Dimension Badges */
 .cad-badges-layer{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:15;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
 .show-dimensions .cad-badges-layer{opacity:1;visibility:visible}
 
-.cad-badge{position:absolute;transform:translate(-50%,-50%);background:#ffffff;border:1.6px solid #0f172a;border-radius:8px;padding:3px 10px;font-size:12.5px;font-weight:700;font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;color:#0f172a;box-shadow:0 4px 12px rgba(15,23,42,0.12);white-space:nowrap;pointer-events:none;user-select:none;transition:opacity .15s ease,transform .08s ease}
+.cad-badge{position:absolute;transform:translate(-50%,-50%);background:#ffffff;border:1.6px solid #0f172a;border-radius:8px;padding:3px 10px;font-size:12.5px;font-weight:700;font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;color:#0f172a;box-shadow:0 4px 12px rgba(15,23,42,0.1);white-space:nowrap;pointer-events:none;user-select:none;transition:opacity .15s ease,transform .08s ease}
 
 /* Controls & Bottom Section */
 .controls-container{max-width:1400px;margin:0 auto;padding:16px 24px 32px}
